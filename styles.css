@@ -1,0 +1,132 @@
+
+@property --gradient-angle {
+  syntax: "<angle>" ;
+  initial-value:0deg;
+  inherits:false;
+}
+
+:root{
+  --clr-1 : #c34b59;
+  --clr-2 : #f8f8f8 ;
+  --clr-3 : #dcdbd9;
+  --clr-4 : #19e30b ;
+  --clr-5 : #81f00a ;
+
+}
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  justify-content: center;
+  place-content: center;
+  background-color: black;
+}
+
+.container{
+  padding: 30px;
+  width: 900px;
+  background-color: black;
+  grid-column: 2/2;
+  position: relative;
+  border-radius: 50px;
+
+}
+
+.container::before,
+.container::after{
+  content: "";
+  position: absolute;
+  inset: -0.8px;
+  z-index: -1;
+  background: conic-gradient(
+     from var(--gradient-angle),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5),
+    var(--clr-5),
+    var(--clr-3)
+  );
+  animation: rotation 1s linear infinite;
+  border-radius: 50px;
+}
+
+
+@keyframes rotation {
+  0%{
+    --gradient-angle:0deg;
+  }
+  100%{
+    --gradient-angle:360deg;
+  }
+}
+
+
+.container::after{
+  filter: blur(2px);
+}
+
+
+
+
+.accordion{
+  height: 50px;
+  width: 100%;
+  margin-bottom: 5px;
+  
+  margin-right: auto;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid rgb(184, 184, 184);
+  text-transform: capitalize;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  padding: 0px 20px;
+  background: transparent;
+  transition: .5s;
+  
+}
+
+
+
+.accordion:after {
+  content: '\002B';
+  color: #ffffff;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active{
+  width: 19%;
+  border: 1px solid red;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel{
+  max-height: 0;
+  overflow: hidden;
+}
+
+p{
+  width: 95%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
